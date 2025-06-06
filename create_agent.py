@@ -9,7 +9,6 @@ from logger import setup_logger
 from core.state import NoteState
 from langchain.output_parsers import PydanticOutputParser
 
-# Set up logger
 logger = setup_logger()
 
 @tool
@@ -57,20 +56,27 @@ def create_agent(
         f"You are one of the following team members: {team_members_str}.\n"
         f"The initial contents of your working directory are:\n{initial_directory_contents}\n"
         "Use the ListDirectoryContents tool to check for updates in the directory contents when needed."
+        "---CONTEXT FROM PREVIOUS STEPS---\n"
+        "Input Data Path: {datapath}\n"
+        "EDA Report: {eda_report}\n"
+        "Statistics Report: {statistic_report}\n"
+        "Clustering Report: {cluster_report}\n"
+        "Visualization Report: {visualization_report}\n"
+        "Hypothesis Report: {hypothesis_report}\n"
+        "Reasoning Report: {reasoning_report}\n"
+        "Total Summary Report: {total_summary_report}\n"
+        "--------------------------------"
     )
 
     prompt = ChatPromptTemplate.from_messages([
         ("system", system_prompt_text),
         MessagesPlaceholder(variable_name="messages"),
-        ("ai", "Context from previous steps:\nInput Data Path: {datapath}\nEDA Report: {eda_report}\nStatistics Report: {statistic_report}\nClustering Report: {cluster_report}\nVisualization Report: {visualization_report}\nHypothesis Report: {hypothesis_report}\nReasoning Report: {reasoning_report}\nTotal Summary Report: {total_summary_report}"),
         MessagesPlaceholder(variable_name="agent_scratchpad"),
     ])
 
-    # Use the correct agent constructor for Google Gemini models with tool calling
     agent = create_tool_calling_agent(llm, tools, prompt)
     
     logger.info("Agent created successfully")
-    # Set verbose=True for detailed debugging output of the agent's thoughts
     return AgentExecutor(agent=agent, tools=tools, verbose=True)
 
 def create_note_agent(
@@ -78,7 +84,7 @@ def create_note_agent(
     tools: list,
     system_prompt: str,
 ) -> AgentExecutor:
-    """Creates a Note Agent that updates the entire state."""
+    """creates a note agent that updates the entire state."""
     logger.info("Creating note agent")
     parser = PydanticOutputParser(pydantic_object=NoteState)
     output_format = parser.get_format_instructions()
