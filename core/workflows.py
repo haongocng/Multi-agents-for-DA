@@ -39,7 +39,6 @@ class WorkflowManager:
         return agents
 
     def setup_workflow(self):
-        """Set up the workflow graph"""
         graph = StateGraph(State)
 
         graph.add_node("DataExplorer", lambda state: agent_node(state, self.agents["explorer"], "DataExplorer"))
@@ -51,7 +50,7 @@ class WorkflowManager:
         graph.add_node("QualityReview", lambda state: agent_node(state, self.agents["quality"], "QualityReview"))
         graph.add_node("Synthesis", lambda state: agent_node(state, self.agents["synthesis"], "Synthesis"))
 
-        # Define the work flow the graph
+        # Define graph workflow 
         graph.add_edge(START, "DataExplorer")
         graph.add_edge("DataExplorer", "DataStatistic")
         graph.add_edge("DataStatistic", "DataCluster")
