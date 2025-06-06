@@ -22,7 +22,6 @@ class State(TypedDict):
 
 
 class NoteState(BaseModel):
-    """Pydantic model for the entire state structure, used by the NoteTaker agent."""
     messages: Sequence[BaseMessage] = Field(default_factory=list, description="List of message dictionaries")
     
     datapath: str = Field(default="", description="Path to the input data file")
