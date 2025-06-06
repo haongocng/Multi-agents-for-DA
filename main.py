@@ -18,7 +18,6 @@ class MultiAgentSystem:
         )
 
     def setup_environment(self):
-        """Initialize environment variables"""
         os.environ["GOOGLE_API_KEY"] = GOOGLE_API_KEY
         os.environ["LANGCHAIN_API_KEY"] = LANGCHAIN_API_KEY
         os.environ["LANGCHAIN_TRACING"] = "true"
@@ -37,7 +36,7 @@ class MultiAgentSystem:
         return None
 
     def run(self, user_input: str) -> None:
-        """Run the multi-agent system with user input"""
+        """multi-agent system with user input"""
         datapath = self.parse_input(user_input)
         if not datapath:
             self.logger.error("Could not find 'datapath:' in user input.")
@@ -73,7 +72,6 @@ class MultiAgentSystem:
                     message.pretty_print()
 
 def main():
-    """Main entry point"""
     system = MultiAgentSystem()
     
     user_input = '''
