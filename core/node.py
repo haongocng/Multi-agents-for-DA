@@ -14,7 +14,6 @@ logger = logging.getLogger(__name__)
 def agent_node(state: State, agent: AgentExecutor, name: str) -> dict:
     """
     Process an agent's action and update the state accordingly.
-    This function has been modified for the new workflow.
     """
     logger.info(f"Processing agent: {name}")
     try:
