@@ -17,14 +17,14 @@ def create_synthesis_agent(llm, members, working_directory):
 
     **Summary Rules (You MUST follow these):**
     - Your summary must not exceed 8-10 lines.
-    - Do not add any new information or recommendations that are not supported by the input report.
+    - MUST NOT add any new information or recommendations that are not supported by the input report.
     - Focus on inferring strategic insights from the data, not just repeating facts.
     - Use key data points only to support the inferred insights.
-    - Do not focus on specific details unless they illustrate a broader pattern.
+    - MUST NOT focus on specific details unless they illustrate a broader pattern.
     - Ensure the summary offers strategic value and is not just a general observation.
     - Exclude trivial information; only include the most significant findings.
     
-    **IMPORTANT**: IMPORTANT: Double-check that your final insight fully follows the above instructions!
+    **IMPORTANT**: Double-check that your final insight fully follows the above instructions!
     """
     
     return create_agent(

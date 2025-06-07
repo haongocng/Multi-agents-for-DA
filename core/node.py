@@ -1,38 +1,30 @@
-from typing import Any
-from langchain_core.messages import AIMessage, HumanMessage, BaseMessage,ToolMessage
-from openai import InternalServerError
+from langchain_core.messages import AIMessage, HumanMessage
 from core.state import State
 import logging
-import json
-import re
-import os
-from pathlib import Path
 from langchain.agents import AgentExecutor
 
 logger = logging.getLogger(__name__)
 
 def agent_node(state: State, agent: AgentExecutor, name: str) -> dict:
     """
-    Process an agent's action and update the state accordingly.
-    This function has been modified for the new workflow.
+    Invokes the agent, updates the state with the agent's output, and
+    trims the message history to prevent it from getting too long.
     """
-    logger.info(f"Processing agent: {name}")
+    logger.info(f"--- Executing agent: {name} ---")
     try:
-        # The agent's prompt template is designed to pick up relevant fields from the state.
-        result = agent.invoke(state)
-        logger.debug(f"Agent {name} result: {result}")
+        # You can adjust the number of messages to pass, e.g., state["messages"][-6:]
+        state_for_agent = state.copy()
+        state_for_agent["messages"] = state["messages"][-6:]
+
+        result = agent.invoke(state_for_agent)
         
-        # Ensure output is a string
-        output = result.get("output", str(result)) if isinstance(result, dict) else str(result)
+        output = result.get("output", "")
         
-        # Create a new message from the agent's output
         ai_message = AIMessage(content=output, name=name)
         
-        # Update the list of messages and the sender
         state["messages"].append(ai_message)
         state["sender"] = name
         
-        # *** MODIFIED SECTION: Update the state with the specific report from each agent ***
         if name == "DataExplorer":
             state["eda_report"] = output
             logger.info("State updated with EDA Report.")
@@ -58,56 +50,13 @@ def agent_node(state: State, agent: AgentExecutor, name: str) -> dict:
             state["final_report"] = output
             logger.info("State updated with Final Insights Report.")
             
-        logger.info(f"Agent {name} processing completed")
+        logger.info(f"--- Finished agent: {name} ---")
         return state
 
     except Exception as e:
         logger.error(f"Error occurred while processing agent {name}: {str(e)}", exc_info=True)
         error_message = AIMessage(content=f"Error in agent {name}: {str(e)}", name="error")
-        return {"messages": state.get("messages", []) + [error_message]}
-
-
-
-def human_choice_node(state: State) -> State:
-    """
-    Handle human input to choose the next step in the process.
-    If regenerating hypothesis, prompt for specific areas to modify.
-    """
-    logger.info("Prompting for human choice")
-    print("Please choose the next step:")
-    print("1. Regenerate hypothesis")
-    print("2. Continue the research process")
-    
-    while True:
-        choice = input("Please enter your choice (1 or 2): ")
-        if choice in ["1", "2"]:
-            break
-        logger.warning(f"Invalid input received: {choice}")
-        print("Invalid input, please try again.")
-    
-    if choice == "1":
-        modification_areas = input("Please specify which parts of the hypothesis you want to modify: ")
-        content = f"Regenerate hypothesis. Areas to modify: {modification_areas}"
-        state["hypothesis"] = ""
-        state["modification_areas"] = modification_areas
-        logger.info("Hypothesis cleared for regeneration")
-        logger.info(f"Areas to modify: {modification_areas}")
-    else:
-        content = "Continue the research process"
-        state["process"] = "Continue the research process"
-        logger.info("Continuing research process")
-    
-    human_message = HumanMessage(content=content)
-    
-    state["messages"].append(human_message)
-    state["sender"] = 'human'
-    
-    logger.info("Human choice processed")
-    return state
-
-def note_agent_node(state: State, agent: AgentExecutor, name: str) -> State:
-    # This node can be kept if you decide to use the NoteTaker agent for debugging or state management
-    # For simplicity in the new workflow, it's not strictly required.
-    pass
+        state["messages"].append(error_message)
+        return state
 
 logger.info("Agent processing node module initialized")

@@ -9,6 +9,7 @@ from logger import setup_logger
 from core.state import NoteState
 from langchain.output_parsers import PydanticOutputParser
 
+# Set up logger
 logger = setup_logger()
 
 @tool
@@ -46,31 +47,21 @@ def create_agent(
     system_prompt_text = (
         "You are a specialized AI assistant in a data analysis team, operating as part of a multi-agent workflow."
         "Your primary goal is to execute your specific task and provide a clear output for the next agent in the chain."
-        "If you can't fully complete a task, explain what you've done and what's needed next. "
+        "If you can't fully complete a task, explain what you've done and what's needed next."
         "Always aim for accurate and clear outputs. "
         f"You have access to the following tools: {tool_names}. "
         f"Your specific role: {system_message}\n"
         "Work autonomously according to your specialty, using the tools available to you. "
-        "Do NOT add any conversational text (eg: the next step...), recommendations, questions, or self-reflection to your output."
         "Do not ask for clarification."
         f"You are one of the following team members: {team_members_str}.\n"
         f"The initial contents of your working directory are:\n{initial_directory_contents}\n"
         "Use the ListDirectoryContents tool to check for updates in the directory contents when needed."
-        "---CONTEXT FROM PREVIOUS STEPS---\n"
-        "Input Data Path: {datapath}\n"
-        "EDA Report: {eda_report}\n"
-        "Statistics Report: {statistic_report}\n"
-        "Clustering Report: {cluster_report}\n"
-        "Visualization Report: {visualization_report}\n"
-        "Hypothesis Report: {hypothesis_report}\n"
-        "Reasoning Report: {reasoning_report}\n"
-        "Total Summary Report: {total_summary_report}\n"
-        "--------------------------------"
     )
 
     prompt = ChatPromptTemplate.from_messages([
         ("system", system_prompt_text),
         MessagesPlaceholder(variable_name="messages"),
+        ("ai", "Context from previous steps:\nInput Data Path: {datapath}\nEDA Report: {eda_report}\nStatistics Report: {statistic_report}\nClustering Report: {cluster_report}\nVisualization Report: {visualization_report}\nHypothesis Report: {hypothesis_report}\nReasoning Report: {reasoning_report}\nTotal Summary Report: {total_summary_report}"),
         MessagesPlaceholder(variable_name="agent_scratchpad"),
     ])
 
@@ -84,7 +75,7 @@ def create_note_agent(
     tools: list,
     system_prompt: str,
 ) -> AgentExecutor:
-    """creates a note agent that updates the entire state."""
+    """Creates a Note Agent that updates the entire state."""
     logger.info("Creating note agent")
     parser = PydanticOutputParser(pydantic_object=NoteState)
     output_format = parser.get_format_instructions()

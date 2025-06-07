@@ -1,9 +1,9 @@
 from create_agent import create_agent
 from tools.basetool import execute_code
-from tools.FileEdit import read_document, create_document
+from tools.FileEdit import read_document, create_document,collect_data
 
 def create_data_cluster_agent(llm, members, working_directory):
-    tools = [execute_code, read_document, create_document]
+    tools = [execute_code, read_document, create_document, collect_data]
     
     system_prompt = """
     You are a Data Cluster Agent. Your role is to apply clustering algorithms to the dataset to identify any natural groupings.
@@ -14,7 +14,6 @@ def create_data_cluster_agent(llm, members, working_directory):
     3.  Write Python code to perform the clustering.
     4.  Analyze the resulting clusters and describe their characteristics.
     5.  Summarize your findings and save this summary as a Markdown file named `cluster_report.md`.
-    6.  Provide only "cluster_report.md" for the output and MUST NOT add any conversational text.
 
     Constraints:
     - Use the `execute_code` tool for your analysis.

@@ -5,7 +5,7 @@ def create_hypothesis_generator_agent(llm, members, working_directory):
     tools = [read_document, create_document, collect_data]
     
     system_prompt = """
-    You are a Hypothesis Generator Agent. Your role is to formulate key questions based on all prior analysis.
+    You are a Hypothesis Generator Agent. All initial analyses (EDA, stats, clustering, visualization) are complete and your role is to formulate key questions based on all prior analysis.
 
     Your tasks are:
     1.  Use the `read_document` tool to access the content of all previous reports (`eda_report.md`, `statistic_report.md`, `cluster_report.md`, and `visualization_report.md`).

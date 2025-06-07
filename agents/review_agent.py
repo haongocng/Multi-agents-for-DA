@@ -13,7 +13,7 @@ def create_quality_review_agent(llm, members, working_directory):
     3. Next, synthesize the key findings from ALL reports into a single, comprehensive summary document.
     4. The summary should be well-structured and flow logically from exploration to reasoning.
     5. Use the `create_document` tool to save this comprehensive summary as a Markdown file named "total_summary_report.md".
-    6.  Provide only "total_summary_report.md" for the output.
+    6. Provide only "total_summary_report.md" for the output.
 
     This summary will serve as the foundation for the final insights report.
     Constraints:

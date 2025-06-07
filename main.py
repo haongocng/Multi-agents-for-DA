@@ -18,6 +18,7 @@ class MultiAgentSystem:
         )
 
     def setup_environment(self):
+        """Initialize environment variables"""
         os.environ["GOOGLE_API_KEY"] = GOOGLE_API_KEY
         os.environ["LANGCHAIN_API_KEY"] = LANGCHAIN_API_KEY
         os.environ["LANGCHAIN_TRACING"] = "true"
@@ -36,7 +37,7 @@ class MultiAgentSystem:
         return None
 
     def run(self, user_input: str) -> None:
-        """multi-agent system with user input"""
+        """Run the multi-agent system with user input"""
         datapath = self.parse_input(user_input)
         if not datapath:
             self.logger.error("Could not find 'datapath:' in user input.")
@@ -72,11 +73,20 @@ class MultiAgentSystem:
                     message.pretty_print()
 
 def main():
+    """Main entry point"""
     system = MultiAgentSystem()
     
     user_input = '''
     datapath:drinks_data.csv
-    Please perform a full analysis of this data, starting with data explorer agent and ending with a final insights report.
+    Please perform a full analysis of this data step-by-step as **Workflow:**
+    1. DataExplorer
+    2. DataStatistic
+    3. DataCluster
+    4. DataVisualization
+    5. HypothesisGenerator
+    6. Reasoner
+    7. QualityReview
+    8. Synthesis
     '''
     system.run(user_input)
 

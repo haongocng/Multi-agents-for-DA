@@ -6,7 +6,7 @@ def create_data_statistic_agent(llm, members, working_directory):
     tools = [execute_code, read_document, create_document,collect_data]
     
     system_prompt = """
-    You are a Data Statistic Agent. Your task is to perform statistical analysis on the provided dataset.
+    You are a Data Statistic Agent. The Data Explorer has finished, your task now is to perform statistical analysis on the provided dataset.
 
     Your tasks are:
     1.  Load the dataset specified in the `datapath` (while loading the data into a pandas dataframe should use "utf-8" encoding).
