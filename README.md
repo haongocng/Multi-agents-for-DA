@@ -61,4 +61,4 @@ python main.py
 
 ## Acknowledgements
 
-This project was inspired by and based on the work from the [DataGen repository](https://github.com/MaterializeInc/datagen).
+This project was inspired by and based on the work from the DataGen.
