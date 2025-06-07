@@ -25,19 +25,19 @@ class LanguageModelManager:
             self.llm = ChatOpenAI(
                 api_key=DEEPINFRA_API_KEY,
                 base_url=DEEPINFRA_API_BASE,
-                model="Qwen/Qwen3-235B-A22B",
+                model="Qwen/Qwen2.5-72B-Instruct",
             )
             
             self.power_llm = ChatOpenAI(
                 api_key=DEEPINFRA_API_KEY,
                 base_url=DEEPINFRA_API_BASE,
-                model="Qwen/Qwen3-235B-A22B",
+                model="Qwen/Qwen2.5-72B-Instruct",
             )
 
             self.json_llm = ChatOpenAI(
                 api_key=DEEPINFRA_API_KEY,
                 base_url=DEEPINFRA_API_BASE,
-                model="Qwen/Qwen3-235B-A22B",
+                model="Qwen/Qwen2.5-72B-Instruct",
             )
             self.logger.info("DeepInfra language models initialized successfully.")
         except Exception as e:

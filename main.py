@@ -78,15 +78,7 @@ def main():
     
     user_input = '''
     datapath:drinks_data.csv
-    Please perform a full analysis of this data step-by-step as **Workflow:**
-    1. DataExplorer
-    2. DataStatistic
-    3. DataCluster
-    4. DataVisualization
-    5. HypothesisGenerator
-    6. Reasoner
-    7. QualityReview
-    8. Synthesis
+    Please perform a full analysis of this data, workflow starting. Your first task is to perform an Exploratory Data Analysis (EDA) on the dataset specified in the datapath. Begin now.
     '''
     system.run(user_input)
 

@@ -14,8 +14,9 @@ def create_data_explorer_agent(llm, members, working_directory):
         3.  Use the `execute_code` tool to run this Python script.
         4.  Analyze the complete output from the executed script.
         5.  Summarize all the findings (shape, data types, info, descriptive statistics, and value counts for categorical columns) into a clear, structured report.
-        6.  Save this summary as a Markdown file named `eda_report.md` and provide `eda_report.md` for the output.
+        6.  Use the `create_document` tool to save this summary as a Markdown file named `eda_report.md`.
         
+
         Constraints:
         - You must use the `execute_code` tool to run your Python analysis.
         - Focus solely on exploring tasks.
