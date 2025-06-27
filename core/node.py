@@ -2,6 +2,7 @@ from langchain_core.messages import AIMessage, HumanMessage
 from core.state import State
 import logging
 from langchain.agents import AgentExecutor
+import json 
 
 logger = logging.getLogger(__name__)
 
@@ -12,9 +13,23 @@ def agent_node(state: State, agent: AgentExecutor, name: str) -> dict:
     """
     logger.info(f"--- Executing agent: {name} ---")
     try:
-        # You can adjust the number of messages to pass, e.g., state["messages"][-6:]
         state_for_agent = state.copy()
-        state_for_agent["messages"] = state["messages"][-6:]
+        
+        original_messages = list(state_for_agent["messages"])
+
+        context_str = "\n--- Current System State ---\n"
+        for key, value in state_for_agent.items():
+            if key not in ["messages", "sender", "intermediate_steps", "agent_scratchpad"] and value:
+                if isinstance(value, (dict, list)):
+                    context_str += f"{key}: {json.dumps(value, indent=2)}\n" 
+                else:
+                    context_str += f"{key}: {value}\n"
+        context_str += "----------------------------\n"
+
+        state_for_agent["messages"].insert(0, HumanMessage(content=context_str, name="SystemContext"))
+
+        # state_for_agent["messages"] = state["messages"][-6:] 
+
 
         result = agent.invoke(state_for_agent)
         
@@ -22,6 +37,7 @@ def agent_node(state: State, agent: AgentExecutor, name: str) -> dict:
         
         ai_message = AIMessage(content=output, name=name)
         
+        state["messages"] = original_messages 
         state["messages"].append(ai_message)
         state["sender"] = name
         
@@ -49,6 +65,25 @@ def agent_node(state: State, agent: AgentExecutor, name: str) -> dict:
         elif name == "Synthesis":
             state["final_report"] = output
             logger.info("State updated with Final Insights Report.")
+        elif name == "FeatureEngineering":
+            state["feature_engineering_report"] = output
+            if "transformed_data.csv" in output: 
+                state["transformed_datapath"] = "transformed_data.csv"
+            logger.info("State updated with Feature Engineering Report and transformed data path.")
+        elif name == "ModelSelection":
+            state["model_selection_report"] = output
+            logger.info("State updated with Model Selection Report.")
+        elif name == "ModelTraining":
+            state["model_training_report"] = output
+            if "trained_classification_model.pkl" in output:
+                state["trained_model_path"] = "trained_classification_model.pkl"
+            logger.info("State updated with Model Training Report and trained model path.")
+        elif name == "ModelEvaluation":
+            state["model_evaluation_report"] = output
+            logger.info("State updated with Model Evaluation Report.")
+        elif name == "Prediction":
+            state["prediction_report"] = output
+            logger.info("State updated with Prediction Report.")
             
         logger.info(f"--- Finished agent: {name} ---")
         return state

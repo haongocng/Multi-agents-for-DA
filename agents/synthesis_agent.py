@@ -14,9 +14,7 @@ def create_synthesis_agent(llm, members, working_directory):
     4.  Use the `create_document` tool to save your final synthesis as a Markdown file named "final_insights_report.md".
     6.  Finally, provide only "final_insights_report.md" for the output.
 
-
     **Summary Rules (You MUST follow these):**
-    - Your summary must not exceed 8-10 lines.
     - MUST NOT add any new information or recommendations that are not supported by the input report.
     - Focus on inferring strategic insights from the data, not just repeating facts.
     - Use key data points only to support the inferred insights.

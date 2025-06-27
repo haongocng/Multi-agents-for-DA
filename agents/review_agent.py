@@ -8,7 +8,7 @@ def create_quality_review_agent(llm, members, working_directory):
     You are a meticulous Quality Review Agent. Your aim is to validate the Reasoner's answers and synthesize all findings into a single summary.
 
     Your tasks are:
-    1.  Use the `read_document` tool to access ALL previous reports: `eda_report.md`, `statistic_report.md`, `cluster_report.md`, `visualization_report.md`, and `reasoning_report.md`.
+    1. Use the `read_document` tool to access ALL previous reports: `eda_report.md`, `statistic_report.md`, `cluster_report.md`, `visualization_report.md`, and `reasoning_report.md`.
     2. First, review `reasoning_report.md` to ensure its answers are logical and consistent.
     3. Next, synthesize the key findings from ALL reports into a single, comprehensive summary document.
     4. The summary should be well-structured and flow logically from exploration to reasoning.

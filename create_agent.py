@@ -9,7 +9,6 @@ from logger import setup_logger
 from core.state import NoteState
 from langchain.output_parsers import PydanticOutputParser
 
-# Set up logger
 logger = setup_logger()
 
 @tool
@@ -42,7 +41,7 @@ def create_agent(
 
     tool_names = ", ".join([t.name for t in tools])
     team_members_str = ", ".join(team_members)
-    initial_directory_contents = list_directory_contents(working_directory)
+    initial_directory_contents = list_directory_contents.invoke(working_directory)
 
     system_prompt_text = (
         "You are a specialized AI assistant in a data analysis team, operating as part of a multi-agent workflow."
@@ -61,7 +60,25 @@ def create_agent(
     prompt = ChatPromptTemplate.from_messages([
         ("system", system_prompt_text),
         MessagesPlaceholder(variable_name="messages"),
-        ("ai", "Context from previous steps:\nInput Data Path: {datapath}\nEDA Report: {eda_report}\nStatistics Report: {statistic_report}\nClustering Report: {cluster_report}\nVisualization Report: {visualization_report}\nHypothesis Report: {hypothesis_report}\nReasoning Report: {reasoning_report}\nTotal Summary Report: {total_summary_report}"),
+        ("ai", "Context from previous steps:\n"
+             "Input Data Path: {{datapath}}\n"
+             "EDA Report: {{eda_report}}\n"
+             "Statistics Report: {{statistic_report}}\n"
+             "Clustering Report: {{cluster_report}}\n"
+             "Visualization Report: {{visualization_report}}\n"
+             "Feature Engineering Report: {{feature_engineering_report}}\n"
+             "Transformed Data Path: {{transformed_datapath}}\n"
+             "Model Selection Report: {{model_selection_report}}\n"
+             "Model Training Report: {{model_training_report}}\n"
+             "Trained Model Path: {{trained_model_path}}\n"
+             "Model Evaluation Report: {{model_evaluation_report}}\n"
+             "Prediction Report: {{prediction_report}}\n"
+             "Hypothesis Report: {{hypothesis_report}}\n"
+             "Reasoning Report: {{reasoning_report}}\n"
+             "Total Summary Report: {{total_summary_report}}\n"
+             "Final Report: {{final_report}}\n"
+             "Current Sender: {{sender}}"
+            ),
         MessagesPlaceholder(variable_name="agent_scratchpad"),
     ])
 

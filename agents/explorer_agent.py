@@ -12,10 +12,17 @@ def create_data_explorer_agent(llm, members, working_directory):
         1.  Load the dataset specified in the `datapath` (while loading the data into a pandas dataframe should use "utf-8" encoding).
         2.  Write a single Python script to perform a detailed exploratory data analysis by printing the shape, data types, info, and descriptive statistics of the dataframe, and value counts for categorical columns as per the instructions.
         3.  Use the `execute_code` tool to run this Python script.
+        **Specific Code-Guide for EDA (to be used within `execute_code`):**
+        - To load data: `df = pd.read_csv(datapath, encoding='utf-8')`
+        - To get shape: `print(df.shape)`
+        - To get data types: `print(df.dtypes)`
+        - To get concise summary: `print(df.info())`
+        - To get descriptive statistics: `print(df.describe(include='all'))`
+        - For value counts of categorical columns (example for a column named 'category_col'): `print(df['category_col'].value_counts())`
+        - Consider handling missing values: `print(df.isnull().sum())`
         4.  Analyze the complete output from the executed script.
         5.  Summarize all the findings (shape, data types, info, descriptive statistics, and value counts for categorical columns) into a clear, structured report.
         6.  Use the `create_document` tool to save this summary as a Markdown file named `eda_report.md`.
-        
 
         Constraints:
         - You must use the `execute_code` tool to run your Python analysis.

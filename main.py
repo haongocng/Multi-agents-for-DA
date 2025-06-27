@@ -47,6 +47,7 @@ class MultiAgentSystem:
         
         initial_state = {
             "messages": [HumanMessage(content=user_input)],
+            "sender": "",
             "datapath": datapath,
             "eda_report": "",
             "statistic_report": "",
@@ -56,6 +57,14 @@ class MultiAgentSystem:
             "reasoning_report": "",
             "total_summary_report": "",
             "final_report": "",
+
+            "transformed_datapath": "",
+            "feature_engineering_report": "",
+            "model_selection_report": "",
+            "model_training_report": "",
+            "trained_model_path": "",
+            "model_evaluation_report": "",
+            "prediction_report": "",
         }
 
         events = graph.stream(
@@ -76,11 +85,17 @@ def main():
     """Main entry point"""
     system = MultiAgentSystem()
     
-    user_input = '''
-    datapath:drinks_data.csv
-    Please perform a full analysis of this data, workflow starting. Your first task is to perform an Exploratory Data Analysis (EDA) on the dataset specified in the datapath. Begin now.
+    # user_input = '''
+    # datapath:drinks_data.csv
+    # Please analyze the 'drinks_data.csv' dataset. Your task is to cluster each instance in the data form into some group, then profile each group based on their digital readiness.
+    # '''
+    # system.run(user_input)
+
+    user_input_classification = '''
+    datapath: edudata_english.csv
+    Please analyze the 'edudata_english.csv' dataset and perform a full classification analysis on 'edudata_english.csv' dataset. Now your task is to predict the 'I am willing to share my digital skills with other students' field in the data;
     '''
-    system.run(user_input)
+    system.run(user_input_classification)
 
 if __name__ == "__main__":
     main()

@@ -14,8 +14,6 @@ def create_reasoner_agent(llm, members, working_directory):
     3.  Formulate clear, data-driven answers to each question.
     4.  Use the `create_document` tool to save your answers in a Markdown file named `reasoning_report.md`.
 
-
-    
     Constraints:
     - Address each question from the hypothesis report systematically.
     - Your answers must be supported by the data and the prior analyses.
