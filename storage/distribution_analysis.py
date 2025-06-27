@@ -1,0 +1,1 @@
+import pandas as pd; df = pd.read_csv('edudata_english.csv', encoding='utf-8'); print(df['I am willing to share my digital skills with other students.'].value_counts(bins=5).sort_index())

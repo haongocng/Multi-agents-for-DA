@@ -1,0 +1,1 @@
+import pandas as pd; df = pd.read_csv('edudata_english.csv', encoding='utf-8'); print(df.corr(method='pearson'))
