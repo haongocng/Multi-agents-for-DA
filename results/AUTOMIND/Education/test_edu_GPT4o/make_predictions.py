@@ -1,0 +1,17 @@
+import pandas as pd
+from sklearn.externals import joblib
+
+# Load the transformed data
+data_path = 'transformed_data.csv'
+data = pd.read_csv(data_path)
+
+# Load the trained model
+model_path = 'trained_classification_model.pkl'
+model = joblib.load(model_path)
+
+# Make predictions
+predictions = model.predict(data)
+
+# Save predictions to a CSV file
+data['Predictions'] = predictions
+data.to_csv('predictions.csv', index=False)

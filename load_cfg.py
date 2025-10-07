@@ -13,6 +13,6 @@ LANGCHAIN_API_KEY = os.getenv('LANGCHAIN_API_KEY')
 # Get working directory from environment variable
 WORKING_DIRECTORY  = os.getenv('WORKING_DIRECTORY ', './storage/')
 # Get Conda-related paths from environment variables
-CONDA_PATH = os.getenv('CONDA_PATH', '/Users/haong/miniconda3')
+CONDA_PATH = os.getenv('CONDA_PATH', '/Users/username/miniconda3')
 CONDA_ENV = os.getenv('CONDA_ENV', 'base')
 

@@ -1,0 +1,1 @@
+![Elbow Method](elbow_method.png)

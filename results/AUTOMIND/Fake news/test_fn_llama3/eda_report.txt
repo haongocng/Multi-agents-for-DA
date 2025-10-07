@@ -1,0 +1,12 @@
+Shape: (1800, 1)
+Data Types:
+text,label    object
+dtype: object
+Info:
+None
+Descriptive Statistics:
+                                               text,label
+count                                                1800
+unique                                               1761
+top     You are using an older browser version. Please...
+freq                                                    7

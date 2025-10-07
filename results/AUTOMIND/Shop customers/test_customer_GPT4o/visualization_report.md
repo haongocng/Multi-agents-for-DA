@@ -1,0 +1,5 @@
+1. ### Visualization Report
+2. 1. **Pairplot of Customer Features**: A pairplot was created to visualize the relationships between key features such as Age, Annual Income, and Spending Score. This visualization helps in understanding the distribution and potential correlations between these features. The pairplot is saved as 'customer_segments_pairplot.png'.
+3. 2. **Feature Correlation Heatmap**: A heatmap was generated to show the correlation between different features in the dataset. This helps in identifying which features are strongly correlated with each other. The heatmap is saved as 'feature_correlation_heatmap.png'.
+4. 3. **Scatter Plot of Age vs Spending Score**: A scatter plot was created to visualize the relationship between Age and Spending Score, with color coding based on Annual Income. This plot helps in identifying patterns or clusters in the data. The scatter plot is saved as 'age_vs_spending_score.png'.
+5. These visualizations provide insights into the customer segments and their characteristics, aiding in further analysis and decision-making.
