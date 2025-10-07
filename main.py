@@ -121,21 +121,21 @@ def main():
     # '''
     # system.run(user_input_fake_news)
 
-    # user_input_heart_disease = '''
-    # datapath: heart_train.csv
-    # test_datapath: heart_test.csv
-    # task: Binary Classification
-    # target_column: HeartDisease
-    # objective: Build a model using train.csv to predict the presence of heart disease (target 'HeartDisease' = 1 for presence, 0 for absence). After training, use the model to make predictions on heart_test.csv (datapath: "heart_test.csv"). The final evaluation metric is Accuracy.
-    # '''
-    # system.run(user_input_heart_disease)
-
-    user_input_shop_customer = '''
-    datapath: Customers.csv
-    task: Clustering
-    objective: Analyze the dataset to segment customers into distinct groups based on their characteristics like Age, Annual Income, and Spending Score. After clustering, provide a detailed profile for each customer segment, describing their key attributes in final insights report.
+    user_input_heart_disease = '''
+    datapath: heart_train.csv
+    test_datapath: heart_test.csv
+    task: Binary Classification
+    target_column: HeartDisease
+    objective: Build a model using train.csv to predict the presence of heart disease (target 'HeartDisease' = 1 for presence, 0 for absence). After training, use the model to make predictions on heart_test.csv (datapath: "heart_test.csv"). The final evaluation metric is Accuracy.
     '''
-    system.run(user_input_shop_customer)
+    system.run(user_input_heart_disease)
+
+    # user_input_shop_customer = '''
+    # datapath: Customers.csv
+    # task: Clustering
+    # objective: Analyze the dataset to segment customers into distinct groups based on their characteristics like Age, Annual Income, and Spending Score. After clustering, provide a detailed profile for each customer segment, describing their key attributes in final insights report.
+    # '''
+    # system.run(user_input_shop_customer)
 
 if __name__ == "__main__":
     main()
