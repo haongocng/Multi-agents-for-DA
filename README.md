@@ -32,15 +32,15 @@ Note: If system doesn't have Anaconda, only need to install Miniconda for experi
 pip install -r requirements.txt
 ```
 
-### 3. Input data
-Put your data (csv) into storage
+### 5. Input data
+Put your data (csv) from dataset folder into storage
 (example: heart_test.csv & heart_train.csv in storage)
 
-### 5. Prompt
+### 6. Prompt
 Change the prompt for specific task
 (example: Currently for heart disease prediction in main.py)
 
-### 6. Run
+### 7. Run
 ```bash
 python main.py
 ```
