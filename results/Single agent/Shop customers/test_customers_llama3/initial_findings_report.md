@@ -1,0 +1,1 @@
+The data contains 2000 customer entries across various features like Age, Annual Income, Spending Score, Profession, Work Experience, and Family Size. The initial findings report will be detailed in eda_report.md

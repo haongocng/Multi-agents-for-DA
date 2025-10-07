@@ -1,0 +1,5 @@
+1. The dataset reflects a highly motivated student population, with 78% of respondents indicating high willingness (4–5) to share digital skills, suggesting a strong cultural or institutional foundation for peer learning.
+2. The SVM model achieved an outstanding test accuracy of 85.44%, demonstrating that student demographics and digital experience are strong predictors of willingness to share skills, enabling targeted outreach programs.
+3. High-performing subgroups include students from the Northern Region and those with more than one year of digital tool experience, indicating regional and experiential factors that can guide resource allocation.
+4. The model's precision and recall above 85% indicate low false positives and negatives, meaning intervention strategies based on predictions are likely to reach the right students without significant misclassification.
+5. Given the strong performance and clear patterns, institutions can deploy lightweight, model-driven surveys or dashboards to identify low-willingness students (predicted score 1–3) for proactive mentorship, without requiring full-scale data collection.

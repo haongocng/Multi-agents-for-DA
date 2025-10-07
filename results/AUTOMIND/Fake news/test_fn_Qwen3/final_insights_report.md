@@ -1,0 +1,5 @@
+1. The Naive Bayes model, trained on the full dataset using a feature pipeline validated on a sample, achieves a robust accuracy of 77.16% and demonstrates strong generalization across real and fake news categories.
+2. The workflow rigorously followed the efficiency strategy: exploratory analysis and model selection were conducted on a small sample to reduce computational overhead, while final training and deployment leveraged the full dataset for optimal performance.
+3. The model's balanced performance (F1-score of 0.72 for fake news, 0.81 for real news) indicates it effectively minimizes false negatives — a critical requirement in fake news detection to avoid amplifying misinformation.
+4. The consistency of preprocessing — from sample to full data and finally to test predictions — validates the pipeline's reliability and ensures reproducibility for future updates or deployments.
+5. For future improvements, consider fine-tuning the CountVectorizer with n-grams or integrating TF-IDF weighting to capture more nuanced language patterns, and evaluate ensemble methods (e.g., stacking with Logistic Regression) to potentially boost accuracy beyond 80%.

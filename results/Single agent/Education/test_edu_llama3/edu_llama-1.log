@@ -1,0 +1,73 @@
+2025-10-04 14:37:42,950 - logger - INFO - Module initialized successfully
+2025-10-04 14:37:44,396 - logger - INFO - Document management tools initialized
+2025-10-04 14:37:48,526 - logger - INFO - DeepInfra language models initialized successfully.
+2025-10-04 14:37:48,527 - logger - INFO - Creating the Super Data Analysis Agent...
+2025-10-04 14:37:48,561 - logger - INFO - Super Agent created successfully.
+2025-10-04 14:37:48,562 - logger - INFO - Starting Super Agent execution...
+2025-10-04 14:37:54,966 - logger - INFO - Creating document: storage\eda_report.md
+2025-10-04 14:37:54,967 - logger - INFO - Document created successfully: storage\eda_report.md
+2025-10-04 14:37:56,563 - logger - INFO - Reading document: storage\eda_report.md
+2025-10-04 14:37:56,631 - logger - INFO - Document read successfully: storage\eda_report.md
+2025-10-04 14:37:59,060 - logger - INFO - Attempting to read CSV file: storage\edudata_english.csv
+2025-10-04 14:37:59,097 - logger - INFO - Successfully read CSV file with encoding: utf-8
+2025-10-04 14:38:04,340 - logger - INFO - Creating document: storage\feature_engineering_report.md
+2025-10-04 14:38:04,343 - logger - INFO - Document created successfully: storage\feature_engineering_report.md
+2025-10-04 14:38:06,776 - logger - INFO - Reading document: storage\feature_engineering_report.md
+2025-10-04 14:38:06,808 - logger - INFO - Document read successfully: storage\feature_engineering_report.md
+2025-10-04 14:38:16,683 - logger - INFO - Code will be written to file: storage\feature_engineering.py
+2025-10-04 14:38:16,685 - logger - INFO - Code has been written to file: storage\feature_engineering.py
+2025-10-04 14:38:16,686 - logger - INFO - Executing command: call C:/Users/haong/miniconda3\Scripts\activate.bat && conda activate data_assistant && python feature_engineering.py
+2025-10-04 14:38:22,592 - logger - ERROR - Code execution failed:   File "D:\9_Lab\DA_agent\storage\feature_engineering.py", line 1
+    from sklearn.model_selection import train_test_split\ndata = data.dropna()\nX = data.drop(['I am willing to share my digital skills with other students'], axis=1)\ny = data['I am willing to share my digital skills with other students']\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+                                                         ^
+SyntaxError: unexpected character after line continuation character
+
+2025-10-04 14:38:33,158 - logger - INFO - Code will be written to file: storage\feature_engineering.py
+2025-10-04 14:38:33,160 - logger - INFO - Code has been written to file: storage\feature_engineering.py
+2025-10-04 14:38:33,161 - logger - INFO - Executing command: call C:/Users/haong/miniconda3\Scripts\activate.bat && conda activate data_assistant && python feature_engineering.py
+2025-10-04 14:38:43,269 - logger - ERROR - Code execution failed: Traceback (most recent call last):
+  File "D:\9_Lab\DA_agent\storage\feature_engineering.py", line 9, in <module>
+    X_scaled = scaler.fit_transform(X)
+  File "D:\9_Lab\DA_agent\da_venv\Lib\site-packages\sklearn\utils\_set_output.py", line 316, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+  File "D:\9_Lab\DA_agent\da_venv\Lib\site-packages\sklearn\base.py", line 894, in fit_transform
+    return self.fit(X, **fit_params).transform(X)
+           ~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\9_Lab\DA_agent\da_venv\Lib\site-packages\sklearn\preprocessing\_data.py", line 907, in fit
+    return self.partial_fit(X, y, sample_weight)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "D:\9_Lab\DA_agent\da_venv\Lib\site-packages\sklearn\base.py", line 1365, in wrapper
+    return fit_method(estimator, *args, **kwargs)
+  File "D:\9_Lab\DA_agent\da_venv\Lib\site-packages\sklearn\preprocessing\_data.py", line 943, in partial_fit
+    X = validate_data(
+        self,
+    ...<4 lines>...
+        reset=first_call,
+    )
+  File "D:\9_Lab\DA_agent\da_venv\Lib\site-packages\sklearn\utils\validation.py", line 2954, in validate_data
+    out = check_array(X, input_name="X", **check_params)
+  File "D:\9_Lab\DA_agent\da_venv\Lib\site-packages\sklearn\utils\validation.py", line 1053, in check_array
+    array = _asarray_with_order(array, order=order, dtype=dtype, xp=xp)
+  File "D:\9_Lab\DA_agent\da_venv\Lib\site-packages\sklearn\utils\_array_api.py", line 757, in _asarray_with_order
+    array = numpy.asarray(array, order=order, dtype=dtype)
+  File "D:\9_Lab\DA_agent\da_venv\Lib\site-packages\pandas\core\generic.py", line 2171, in __array__
+    arr = np.asarray(values, dtype=dtype)
+ValueError: could not convert string to float: '4/8/2025 11:11'
+
+2025-10-04 14:38:58,720 - logger - INFO - Code will be written to file: storage\feature_engineering.py
+2025-10-04 14:38:58,722 - logger - INFO - Code has been written to file: storage\feature_engineering.py
+2025-10-04 14:38:58,722 - logger - INFO - Executing command: call C:/Users/haong/miniconda3\Scripts\activate.bat && conda activate data_assistant && python feature_engineering.py
+2025-10-04 14:39:05,951 - logger - INFO - Code executed successfully
+2025-10-04 14:39:12,166 - logger - INFO - Creating document: storage\model_selection_report.md
+2025-10-04 14:39:12,168 - logger - INFO - Document created successfully: storage\model_selection_report.md
+2025-10-04 14:39:14,147 - logger - INFO - Reading document: storage\model_selection_report.md
+2025-10-04 14:39:14,171 - logger - INFO - Document read successfully: storage\model_selection_report.md
+2025-10-04 14:40:51,908 - logger - INFO - Code will be written to file: storage\model_training.py
+2025-10-04 14:40:51,910 - logger - INFO - Code has been written to file: storage\model_training.py
+2025-10-04 14:40:51,911 - logger - INFO - Executing command: call C:/Users/haong/miniconda3\Scripts\activate.bat && conda activate data_assistant && python model_training.py
+2025-10-04 14:41:02,511 - logger - INFO - Code executed successfully
+2025-10-04 14:41:23,283 - logger - INFO - Creating document: storage\model_evaluation_report.md
+2025-10-04 14:41:23,286 - logger - INFO - Document created successfully: storage\model_evaluation_report.md
+2025-10-04 14:41:48,067 - logger - INFO - Creating document: storage\final_insights_report.md
+2025-10-04 14:41:48,068 - logger - INFO - Document created successfully: storage\final_insights_report.md
+2025-10-04 14:42:05,451 - logger - INFO - Super Agent execution finished.
