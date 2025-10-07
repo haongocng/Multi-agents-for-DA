@@ -3,6 +3,9 @@ from langchain_openai import ChatOpenAI
 from langchain_google_genai import ChatGoogleGenerativeAI
 from load_cfg import DEEPINFRA_API_KEY, DEEPINFRA_API_BASE
 from logger import setup_logger
+#To use openai api key
+import os
+# os.environ["OPENAI_API_KEY"] = "your_api_key_here"
 
 class LanguageModelManager:
     def __init__(self):
@@ -14,14 +17,11 @@ class LanguageModelManager:
 
     def initialize_llms(self):
         try:
-            # self.llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash-latest", temperature=0)
-            # self.power_llm = ChatGoogleGenerativeAI(model="gemini-1.5-pro-latest", temperature=0.5)
-            # self.json_llm = ChatGoogleGenerativeAI(
-            #     model="gemini-1.5-pro-latest",
-            #     temperature=0,
-            #     generation_config={"response_mime_type": "application/json"}
-            # )
-            # self.logger.info("Google language models initialized successfully.")
+            #model 
+            #Qwen/Qwen3-Next-80B-A3B-Instruct
+            #meta-llama/Llama-3.3-70B-Instruct
+            #google/gemini-2.5-pro
+            #gpt-4o
             self.llm = ChatOpenAI(
                 api_key=DEEPINFRA_API_KEY,
                 base_url=DEEPINFRA_API_BASE,
@@ -39,6 +39,22 @@ class LanguageModelManager:
                 base_url=DEEPINFRA_API_BASE,
                 model="Qwen/Qwen2.5-72B-Instruct",
             )
+
+            #  self.llm = ChatOpenAI(
+            #     model="gpt-4o",
+            #     temperature=0
+            # )
+            
+            # self.power_llm = ChatOpenAI(
+            #     model="gpt-4o",
+            #     temperature=0.5
+            # )
+
+            # self.json_llm = ChatOpenAI(
+            #     model="gpt-4o",
+            #     temperature=0,
+            #     model_kwargs={"response_format": {"type": "json_object"}}
+            # )
             self.logger.info("DeepInfra language models initialized successfully.")
         except Exception as e:
             self.logger.error(f"Error creating LLM: {str(e)}")

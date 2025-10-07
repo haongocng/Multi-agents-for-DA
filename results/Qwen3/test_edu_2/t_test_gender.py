@@ -1,1 +1,0 @@
-import pandas as pd; from scipy import stats; df = pd.read_csv('edudata_english.csv', encoding='utf-8'); group1 = df[df['Gender'] == 'Female']['I am willing to share my digital skills with other students.']; group2 = df[df['Gender'] == 'Male']['I am willing to share my digital skills with other students.']; print(stats.ttest_ind(group1, group2))

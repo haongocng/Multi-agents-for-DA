@@ -1,4 +1,0 @@
-1. The XGBoost model, trained on a robustly engineered dataset, achieves a clinically significant 94% recall for detecting heart disease, making it the optimal tool for minimizing false negatives in real-world screening applications.
-2. Engineered features like Age_MaxHR and Oldpeak_MaxHR_Ratio capture physiologically meaningful interactions that significantly enhance model performance, validating the value of domain-informed feature creation over raw feature input.
-3. The consistent preprocessing pipeline—from cholesterol imputation to feature scaling—ensures reliable, reproducible predictions on new data, enabling seamless integration into clinical decision-support systems.
-4. Deployment should prioritize high-recall performance over raw accuracy, as missing a heart disease case has far greater clinical cost than a false positive, aligning perfectly with the model's demonstrated strength.
